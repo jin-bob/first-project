@@ -29,13 +29,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Set environment variables
-        run: echo "REACT_APP_GOOGLE_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}" >> $GITHUB_ENV
-
       - name: Run build
         env:
           NODE_ENV: production
-          REACT_APP_GOOGLE_CLIENT_ID: ${{ env.REACT_APP_GOOGLE_CLIENT_ID }}
+          REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
         run: |
           unset CI
           npm run build
