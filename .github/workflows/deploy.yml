@@ -1,4 +1,4 @@
-name: Deploy
+name: deploy
 on:
   push:
     branches: main
@@ -41,9 +41,19 @@ jobs:
           unset CI
           npm run build
 
-      - name: Sync Files
+      - name: Clean repository
+        run: git clean -fdx
+
+      - name: Show current branch
+        run: git branch
+
+      - name: Show remote branches
+        run: git branch -r
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           publish_branch: gh-pages
+          force: true
