@@ -1,5 +1,6 @@
 {
   "name": "first-project",
+  "homepage": "https://jin-bob.github.io/first-project",
   "version": "0.2.0",
   "private": true,
   "dependencies": {
@@ -21,7 +22,9 @@
     "lint:formatted": "eslint -f ./lint-formatter.js  ./src",
     "lint:fix": "eslint ./src --fix --color",
     "format": "prettier ./src --write \"**/*.{js,jsx,json,md}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +57,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^6.2.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
