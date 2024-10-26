@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfirst_project=self.webpackChunkfirst_project||[]).push([[91],{91:(e,r,t)=>{t.r(r),t.d(r,{default:()=>s});var n=t(579);function s(){return(0,n.jsx)("div",{children:"Landing Page"})}}}]);
+//# sourceMappingURL=91.1757c5c6.chunk.js.map
