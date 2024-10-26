@@ -1,7 +1,7 @@
 {
   "name": "first-project",
   "homepage": "https://jin-bob.github.io/first-project",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "dependencies": {
     "@tanstack/react-query": "^5.59.16",
