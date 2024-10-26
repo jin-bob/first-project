@@ -3,6 +3,7 @@ import { createHashRouter } from "react-router-dom";
 import RootElement from "./RootElement";
 
 const LandingPage = lazy(() => import("pages/landing"));
+const AuthPage = lazy(() => import("pages/auth"));
 
 export default createHashRouter([
   {
@@ -11,6 +12,10 @@ export default createHashRouter([
       {
         path: "/",
         element: <LandingPage />,
+      },
+      {
+        path: "/auth",
+        element: <AuthPage />,
       },
     ],
   },
