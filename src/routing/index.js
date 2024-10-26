@@ -1,10 +1,10 @@
 import { lazy } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import RootElement from "./RootElement";
 
 const LandingPage = lazy(() => import("pages/landing"));
 
-export default createBrowserRouter([
+export default createHashRouter([
   {
     element: <RootElement />,
     children: [
