@@ -54,6 +54,3 @@ jobs:
           publish_dir: ./build
           publish_branch: gh-pages
           force: true
-
-      - name: Clean repository
-        run: git clean -fdx

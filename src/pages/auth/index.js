@@ -2,6 +2,7 @@ import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import scopes from "constants/googleAuthScopes";
 
 export default function Auth() {
+  console.log("process.env.REACT_APP_GOOGLE_CLIENT_ID: ", process.env.REACT_APP_GOOGLE_CLIENT_ID);
   return (
     <div>
       <div>Auth</div>
