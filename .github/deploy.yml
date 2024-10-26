@@ -1,0 +1,53 @@
+name: Deploy
+on:
+  push:
+    branches: main
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20]
+
+    steps:
+      - name: Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: echo ${{github.ref}}
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: List files in the repository
+        run: ls -R
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install dependencies
+        if: github.ref == 'refs/heads/main'
+        run: npm install axios
+
+      - name: Set environment variables for main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "REACT_APP_GOOGLE_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}" >> $GITHUB_ENV
+
+      - name: Run build
+        env:
+          NODE_ENV: production
+          REACT_APP_GOOGLE_CLIENT_ID: ${{ env.REACT_APP_GOOGLE_CLIENT_ID }}
+        run: |
+          unset CI
+          npm run build
+
+      - name: Sync Files
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
