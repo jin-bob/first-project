@@ -4,7 +4,7 @@ import scopes from "constants/googleAuthScopes";
 export default function Auth() {
   return (
     <div>
-      <div>Auth</div>
+      <div>Auth Page</div>
 
       <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
         <div>
