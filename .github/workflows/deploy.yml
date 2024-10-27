@@ -43,28 +43,10 @@ jobs:
       - name: Show remote branches
         run: git branch -r
 
-      - name: check out gh-pages branch
-        uses: actions/checkout@v3
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          ref: gh-pages
-          path: gh-pages
-
-      - name: clean repository
-        run: |
-          cd gh-pages
-          git clean -fdx
-
-      - name: set up Git user
-        run: |
-          cd gh-pages  # Navigate to the gh-pages directory
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: remove all files and folders in gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cd gh-pages
-          git rm -rf .
-          git commit -m "Remove all files from gh-pages" || echo "No changes to commit"
-          git push
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          publish_branch: gh-pages
+          force: true
