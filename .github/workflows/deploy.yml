@@ -50,3 +50,11 @@ jobs:
           publish_dir: ./build
           publish_branch: gh-pages
           force: true
+
+      - name: check out gh-pages branch
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+
+      - name: clean repository
+        run: git clean -fdx
