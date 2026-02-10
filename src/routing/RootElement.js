@@ -1,12 +1,13 @@
 import { Outlet } from "react-router";
 import LoadingSuspense from "components/LoadingSuspense";
+import AuthProvider from "context/authContext/AuthProvider";
 
 export default function RootElement() {
   return (
-    <div>
+    <AuthProvider>
       <LoadingSuspense>
         <Outlet />
       </LoadingSuspense>
-    </div>
+    </AuthProvider>
   );
 }
