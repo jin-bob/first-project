@@ -18,8 +18,6 @@ export default function Auth() {
     if (token) {
       const userTokenInfo = jwtDecode(token);
 
-      console.log("userTokenInfo", userTokenInfo);
-
       setUserInfo({
         name: `${userTokenInfo.given_name} ${userTokenInfo.family_name}`,
         email: userTokenInfo.email,
@@ -61,7 +59,6 @@ export default function Auth() {
             onSuccess={(response) => {
               setToken(response.credential);
 
-              console.log("aboba");
               navigate("/admin");
             }}
             onError={() => console.log("Login Failed")}
