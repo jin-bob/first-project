@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/91.1757c5c6.chunk.js","mappings":"qJAAe,SAASA,IACtB,OAAOC,EAAAA,EAAAA,KAAA,OAAAC,SAAK,gBACd,C","sources":["pages/landing/index.js"],"sourcesContent":["export default function LandingPage() {\n  return <div>Landing Page</div>;\n}\n"],"names":["LandingPage","_jsx","children"],"sourceRoot":""}
