@@ -3,6 +3,7 @@ import { createHashRouter } from "react-router-dom";
 import RootElement from "./RootElement";
 import AdminLayout from "../layouts/Admin";
 import PrivateRoute from "./PrivateRoute";
+import AuthElement from "./AuthElement";
 
 const LandingPage = lazy(() => import("pages/landing"));
 const AuthPage = lazy(() => import("pages/auth"));
@@ -18,7 +19,11 @@ export default createHashRouter([
       },
       {
         path: "/auth",
-        element: <AuthPage />,
+        element: (
+          <AuthElement>
+            <AuthPage />
+          </AuthElement>
+        ),
       },
       {
         path: "/admin",

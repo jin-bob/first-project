@@ -4,7 +4,7 @@ import useAuth from "context/authContext/useAuth";
 import AUTH_STATUSES from "constants/auth";
 
 export default function PrivateRoute({ children }) {
-  const authStatus = useAuth();
+  const { authStatus } = useAuth();
 
   if (authStatus === AUTH_STATUSES.loading) {
     return <div>Loading...</div>;

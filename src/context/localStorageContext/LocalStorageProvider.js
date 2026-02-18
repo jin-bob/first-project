@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import LOCAL_STORAGE_KEYS_DICTIONARY from "constants/localeStorageKeys";
 import localStorageHelper from "helpers/storage";
 import localStorageContext from "./context";
-
 import initStorage from "./initStorage";
 
 const DELAY = 300;

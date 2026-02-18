@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import useLocalStorage from "context/localStorageContext/useLocalStorage";
 import AUTH_STATUSES from "constants/auth";
@@ -10,21 +10,27 @@ const { Provider } = authContext;
 export default function AuthProvider({ children }) {
   const [authStatus, setAuthStatus] = useState(AUTH_STATUSES.loading);
 
-  const { getItem } = useLocalStorage();
+  const { getItem, setItem } = useLocalStorage();
 
   useEffect(() => {
     const storageToken = getItem(LOCAL_STORAGE_KEYS_DICTIONARY.token);
 
     if (storageToken) {
       setAuthStatus(AUTH_STATUSES.authorized);
-
-      return;
+    } else {
+      setAuthStatus(AUTH_STATUSES.unauthorized);
     }
-
-    setAuthStatus(AUTH_STATUSES.unauthorized);
   }, [getItem]);
 
-  return <Provider value={authStatus}>{children}</Provider>;
+  const login = useCallback(
+    (token) => {
+      setItem(LOCAL_STORAGE_KEYS_DICTIONARY.token, token);
+      setAuthStatus(AUTH_STATUSES.authorized);
+    },
+    [setItem],
+  );
+
+  return <Provider value={{ authStatus, login }}>{children}</Provider>;
 }
 
 AuthProvider.propTypes = {

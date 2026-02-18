@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import useLocalStorage from "context/localStorageContext/useLocalStorage";
+import useAuth from "context/authContext/useAuth";
 import LOCAL_STORAGE_KEYS_DICTIONARY from "constants/localeStorageKeys";
 
 export default function Auth() {
   const [userInfo, setUserInfo] = useState(null);
   const [token, setToken] = useState(null);
+  const { login } = useAuth();
 
   const navigate = useNavigate();
 
@@ -42,10 +44,12 @@ export default function Auth() {
       }
 
       if (userInfo.token) {
-        setItem(LOCAL_STORAGE_KEYS_DICTIONARY.token, userInfo.token);
+        login(userInfo.token);
       }
+
+      navigate("/admin");
     }
-  }, [setItem, userInfo]);
+  }, [login, navigate, setItem, userInfo]);
 
   return (
     <div>
@@ -58,8 +62,6 @@ export default function Auth() {
             cookiePolicy="single_host_origin"
             onSuccess={(response) => {
               setToken(response.credential);
-
-              navigate("/admin");
             }}
             onError={() => console.log("Login Failed")}
           />
